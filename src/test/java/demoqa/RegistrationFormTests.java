@@ -1,5 +1,6 @@
-package test.demoqa;
+package demoqa;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import static io.qameta.allure.Allure.step;
 
 @Tag("demoqa")
 public class RegistrationFormTests extends TestBase {
-
+SelenideLogger.addListener("allure", new AllureSelenide());
     @Test
     @DisplayName("Successful fill registration test")
     void fillFormTest() {
@@ -33,7 +34,7 @@ public class RegistrationFormTests extends TestBase {
             $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
             $("#subjectsInput").setValue("Math").pressEnter();
             $("#hobbiesWrapper").$(byText("Sports")).click();
-            $("#uploadPicture").uploadFromClasspath("img/1.png");
+            $("#uploadPicture").uploadFromClasspath("1.jpg");
             $("#currentAddress").setValue("Some street 1");
             $("#state").click();
             $("#stateCity-wrapper").$(byText("NCR")).click();
