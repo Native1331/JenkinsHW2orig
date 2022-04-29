@@ -12,7 +12,7 @@ import static io.qameta.allure.Allure.step;
 
 @Tag("demoqa")
 public class RegistrationFormTests extends TestBase {
-SelenideLogger.addListener("allure", new AllureSelenide());
+
     @Test
     @DisplayName("Successful fill registration test")
     void fillFormTest() {
