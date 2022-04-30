@@ -1,6 +1,6 @@
 package demoqa;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class RegistrationFormTests extends TestBase {
             $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
             executeJavaScript("$('footer').remove()");
             executeJavaScript("$('#fixedban').remove()");
-        });
+                   });
         step("Fill registration form", () -> {
             $("#firstName").setValue("Alex");
             $("#lastName").setValue("Egorov");
@@ -34,7 +34,7 @@ public class RegistrationFormTests extends TestBase {
             $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
             $("#subjectsInput").setValue("Math").pressEnter();
             $("#hobbiesWrapper").$(byText("Sports")).click();
-            $("#uploadPicture").uploadFromClasspath("1.jpg");
+            $("#uploadPicture").uploadFromClasspath("img/1.jpg");
             $("#currentAddress").setValue("Some street 1");
             $("#state").click();
             $("#stateCity-wrapper").$(byText("NCR")).click();
