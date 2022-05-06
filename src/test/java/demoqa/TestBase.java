@@ -18,10 +18,10 @@ public class TestBase {
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        Configuration.baseUrl = System.getProperty("BASE_URL");
+        Configuration.baseUrl = configs.base_url();
         Configuration.browserSize = System.getProperty("browsersize");
         Configuration.remote = "https://"+ configs.selenoidLogin() + ":" + configs.selenoidPassword() + "@" +
-                "selenoid.autotests.cloud/wd/hub";
+                configs.selenoid_server();
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
