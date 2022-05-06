@@ -12,16 +12,20 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
-    private static final CredentialsConfig configs = ConfigFactory.create(CredentialsConfig.class);
+
 
     @BeforeAll
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+        String selenoidLogin = config.selenoidLogin();
+        String selenoidPassword = config.selenoidPassword();
+        String selenoidServer = System.getProperty("selenoid_server","selenoid.autotests.cloud/wd/hub");
 
-        Configuration.baseUrl = configs.base_url();
-        Configuration.browserSize = System.getProperty("browsersize");
-        Configuration.remote = "https://"+ configs.selenoidLogin() + ":" + configs.selenoidPassword() + "@" +
-                configs.selenoid_server();
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.browserSize = "1920x1080";
+        Configuration.remote = "https://" + selenoidLogin + ":" + selenoidPassword + "@" +
+                selenoidServer;
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
